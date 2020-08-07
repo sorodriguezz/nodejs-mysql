@@ -5,11 +5,13 @@ const path = require('path');
 const flash = require('connect-flash');
 const session = require('express-session');
 const mysqlStore = require('express-mysql-session');
+const passport = require('passport')
 
 const {database} = require('./keys');
 
 // INICIALIZACIONES
 const app = express();
+require('./lib/passport');
 
 // * CONFIGURACIONES
 // CONFIGURACION DEL PUERTO DEL SERVER
@@ -37,6 +39,9 @@ app.use(session({
     store: new mysqlStore(database)
 }));
 app.use(flash());
+// INICIAR PASSPORT
+app.use(passport.initialize());
+app.use(passport.session());
 
 // VARIABLES GLOBALES
 app.use((req, res, next) => {
