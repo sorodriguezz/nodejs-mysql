@@ -11,9 +11,12 @@ const {database} = require('./keys');
 // INICIALIZACIONES
 const app = express();
 
-// CONFIGURACIONES
+// * CONFIGURACIONES
+// CONFIGURACION DEL PUERTO DEL SERVER
 app.set('port', process.env.PORT || 4000);
+// USAR LA CARPETA VIEWS COMO DIRECTORIO PATH
 app.set('views', path.join(__dirname, 'views'));
+//CONFIGURACION DE HBS PARA DEFINIR CARPETA PARTIALS, LAYOUTS Y LAYOUT POR DEFECTO
 app.engine('.hbs', exphbs({
     defaultLayout: 'main',
     layoutsDir: path.join(app.get('views'), 'layouts'),
